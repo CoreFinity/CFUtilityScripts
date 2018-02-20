@@ -21,6 +21,9 @@ HOUR=(`awk -v min=1 -v max=5 'BEGIN{srand(); print int(min+rand()*(max-min+1))}'
 # cronFile, remove dots from hostname as unix based systems seem to ignore cron files in cron.d/ directory if they have a dot in them, go figure
 cronFile=${1//[-._]/}
 
+echo $cronFile
+echo 1
+
 echo -e "include_conf\t/etc/rsnapshot-common.conf
 
 snapshot_root\t/home/backups/$1/files/
