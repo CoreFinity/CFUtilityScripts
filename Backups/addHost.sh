@@ -18,6 +18,9 @@ MINUTE=(`awk -v min=0 -v max=60 'BEGIN{srand(); print int(min+rand()*(max-min+1)
 # randomise the hour the back is done between 1 and 5am
 HOUR=(`awk -v min=1 -v max=5 'BEGIN{srand(); print int(min+rand()*(max-min+1))}'`)
 
+# cronFile, remove dots from hostname as unix based systems seem to ignore cron files in cron.d/ directory if they have a dot in them, go figure
+cronFile=${1//[-._]/}
+
 echo -e "include_conf\t/etc/rsnapshot-common.conf
 
 snapshot_root\t/home/backups/$1/files/
@@ -70,4 +73,4 @@ $MINUTE $HOUR * * * root rsnapshot -c /home/backups/$1/configs/rsnapshot.conf da
 $MINUTE $HOUR * * 0 root rsnapshot -c /home/backups/$1/configs/rsnapshot.conf weekly
 $MINUTE $HOUR 1 * * root rsnapshot -c /home/backups/$1/configs/rsnapshot.conf monthly
 $MINUTE */12 * * * root sh /root/vortexdbbackup.sh $1
-" >> /etc/cron.d/$1
+" >> /etc/cron.d/$cronFile
