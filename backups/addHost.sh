@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Adds a host to backup system (must be ran on the backup server)
 #
