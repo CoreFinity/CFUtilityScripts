@@ -54,7 +54,7 @@ fi
 
 # Delete any files that match the filename and are older than 7 days
 echo "Deleting databases backups older than 7 days"
-#(find $vhostPath/var/ -name "db-*.gz" -mtime +15 | xargs rm -f)
+(find $vhostPath/var/ -name "db-*.gz" -mtime +7 | xargs rm -f)
 
 # Move the file to latest.sql.gz
 echo "Moving file from var/db.sql.gz to $latestdbfilepath"
