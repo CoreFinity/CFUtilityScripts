@@ -16,5 +16,13 @@ if [ -z "$vhostPath" ]
 then
     vhostPath=$(cat /etc/nginx/conf.d/*.conf | regex1 'set\s+\$MAGE_ROOT\s+([\/a-zA-Z0-9_.-]+);' | sed -n 1p)
 fi
+case "$vhostPath" in
+*/)
+    vhostPath="$vhostPath"
+    ;;
+*)
+    vhostPath="$vhostPath/"
+    ;;
+esac
 echo "$vhostPath"
 exit
