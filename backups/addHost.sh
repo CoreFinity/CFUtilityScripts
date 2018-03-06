@@ -64,7 +64,7 @@ echo "# Vortex backup
 - /var/lock
 - /vmlinuz
 - /var/lib/mysql
-+ /*" >> /home/backups/$1/configs/excludes.conf
++ /*" > /home/backups/$1/configs/excludes.conf
 
 # Create a crobtab file for this host
 # To ease management each host has it's own crontab file
@@ -77,4 +77,4 @@ $MINUTE $HOUR * * * root rsnapshot -c /home/backups/$1/configs/rsnapshot.conf da
 $MINUTE $HOUR * * 0 root rsnapshot -c /home/backups/$1/configs/rsnapshot.conf weekly
 $MINUTE $HOUR 1 * * root rsnapshot -c /home/backups/$1/configs/rsnapshot.conf monthly
 $MINUTE */12 * * * root sh /root/vortexdbbackup.sh $1
-" >> /etc/cron.d/$cronFile
+" > /etc/cron.d/$cronFile
