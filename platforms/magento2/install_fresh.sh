@@ -31,12 +31,12 @@ ENCRYPTION_KEY=$(echo date | md5sum | cut -f1 -d" ");
 php bin/magento setup:install \
     --base-url="https://$2/" \
     --base-url-secure="https://$2/" \
-    --db-host='db' \
+    --db-host='127.0.0.1' \
     --db-name="$3" \
     --db-user="$3" \
     --db-password="$4" \
-    --admin-firstname='Vortex' \
-    --admin-lastname='Commerce' \
+    --admin-firstname='Core' \
+    --admin-lastname='Finity' \
     --admin-email='support@corefinity.com' \
     --admin-user='admin' \
     --admin-password='$5' \
@@ -47,10 +47,10 @@ php bin/magento setup:install \
     --use-secure='1' \
     --use-secure-admin=1 \
     --session-save='redis' \
-    --session-save-redis-host='sessions' \
+    --session-save-redis-host='127.0.0.1' \
     --admin-use-security-key='1' \
     --cache-backend='redis' \
-    --cache-backend-redis-server='cache' \
+    --cache-backend-redis-server='127.0.0.1' \
     --http-cache-hosts='127.0.0.1:8082' \
     --backend-frontname='admin' \
     && php bin/magento config:set system/full_page_cache/varnish/backend_host 127.0.0.1 \
