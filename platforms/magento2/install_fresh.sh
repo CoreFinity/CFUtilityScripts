@@ -20,13 +20,7 @@ composer create-project \
 rsync -avz ./magento/ ./
 rm -Rf ./magento/
 
-# Add the Vortex private Packagist repo
-composer config repositories.vortex composer https://repo.packagist.com/vortexcommerce/
-composer config repo.packagist false
-
 composer update
-
-ENCRYPTION_KEY=$(echo date | md5sum | cut -f1 -d" ");
 
 php bin/magento setup:install \
     --base-url="https://$2/" \
@@ -51,10 +45,10 @@ php bin/magento setup:install \
     --admin-use-security-key='1' \
     --cache-backend='redis' \
     --cache-backend-redis-server='127.0.0.1' \
-    --http-cache-hosts='127.0.0.1:8082' \
+    --http-cache-hosts='127.0.0.1:6082' \
     --backend-frontname='admin' \
     && php bin/magento config:set system/full_page_cache/varnish/backend_host 127.0.0.1 \
-    && php bin/magento config:set system/full_page_cache/varnish/backend_port 8082 \
+    && php bin/magento config:set system/full_page_cache/varnish/backend_port 6082 \
     && php bin/magento sampledata:deploy \
     && composer update \
     && php bin/magento setup:upgrade \
