@@ -7,7 +7,7 @@ timestamp() {
 
 vhostPath=$(/usr/bin/CFScripts/ansible/getNginxVhostPath.sh)
 
-find_sql=$(find $vhostPath -name '*.sql' -o -name '*.sql.*')
+find_sql=$(find $vhostPath -maxdepth 1  -name '*.sql' -o -name '*.sql.*')
 if [ -z "$find_sql" ]; then
    exit 0
 else
